@@ -1,0 +1,95 @@
+/**
+ * Header Core Styles
+ * Author: David Mauricio Herazo Lopez
+ * C Hawk Construction - Licensed PA190465
+ *
+ * Base layout, overflow containment, and nav positioning.
+ * Includes viewport-lock fix to prevent hamburger button shift on menu open.
+ */
+
+/* Prevent horizontal overflow at document level */
+html,
+body {
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+.header {
+    position: sticky;
+    z-index: var(--z-fixed);
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+/* Fixed top navigation bar */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: rgb(255 255 255 / .95);
+    backdrop-filter: var(--backdrop-blur-lg) saturate(180%);
+    -webkit-backdrop-filter: var(--backdrop-blur-lg) saturate(180%);
+    border-bottom: var(--border-width-thin) solid rgb(107 152 180 / .1);
+    transition: all var(--transition-smooth) var(--ease-professional);
+    z-index: var(--z-fixed);
+}
+
+.nav__container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: var(--space-md) var(--container-padding-mobile);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: var(--z-logo);
+}
+
+/* Logo */
+.nav__logo {
+    display: flex;
+    align-items: center;
+    z-index: var(--z-logo);
+    transition: transform var(--transition-smooth) var(--ease-professional);
+}
+
+.nav__logo-picture {
+    display: block;
+}
+
+.nav__logo-image {
+    height: 11rem;
+    width: auto;
+    display: block;
+    filter: drop-shadow(0 .2rem .8rem rgb(107 152 180 / .15));
+}
+
+@media (hover: hover) {
+    .nav__logo:hover {
+        transform: translateY(-.2rem);
+    }
+}
+
+
+.nav__toggle {
+    will-change: auto;
+    transform: none;
+    transition-property: background, border-color, box-shadow;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+}
+
+.nav__toggle[aria-expanded="true"]:not(.nav__toggle--submenu-open) {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    border-color: var(--color-primary);
+    transform: none;
+}
+
+/* Tablet+ */
+@media (min-width: 768px) {
+    .nav__container {
+        padding: var(--space-lg) var(--container-padding-tablet);
+    }
+}

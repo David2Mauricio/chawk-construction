@@ -1,0 +1,721 @@
+/**
+ * FAQ (Frequently Asked Questions) Section Component
+ * 
+ * Collapsible accordion-style FAQ section with smooth animations,
+ * accessibility features, and call-to-action integration.
+ * 
+ * @author David Mauricio Herazo Lopez
+ * @version 1.0.0
+ */
+
+/* ============================================
+   BASE SECTION STYLES
+   ============================================ */
+
+.faq {
+  position: relative;
+  background: linear-gradient(180deg, #ffffff 0%, #F8F9FA 100%);
+  padding: 4rem 0;
+  overflow: hidden;
+}
+
+.faq__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  position: relative;
+  z-index: 10;
+}
+
+/* ============================================
+   HEADER SECTION
+   ============================================ */
+
+.faq__header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .faq__header {
+    animation: fade-in-up 0.8s ease-out forwards;
+    animation-delay: 0.1s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq__header {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.faq__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 1rem 2rem;
+  background: #fff;
+  border: 2px solid #E8F4F8;
+  border-radius: 3rem;
+  box-shadow: 0 8px 24px rgb(107 152 180 / 0.1);
+  margin-bottom: 1.75rem;
+  transition: all 0.3s ease;
+}
+
+@media (hover: hover) {
+  .faq__badge:hover {
+    box-shadow: 0 12px 32px rgb(107 152 180 / 0.15);
+    transform: translateY(-2px);
+  }
+  
+  .faq__badge:hover svg {
+    transform: scale(1.1);
+  }
+}
+
+.faq__badge svg {
+  color: #6B98B4;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.faq__badge-text {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #2C5F7B;
+  letter-spacing: 0.1em;
+}
+
+.faq__title {
+  font-size: 3.25rem;
+  font-weight: 900;
+  color: #2C5F7B;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.faq__title-accent {
+  color: #6B98B4;
+}
+
+.faq__description {
+  font-size: 1.375rem;
+  color: #4A7A95;
+  line-height: 1.8;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   FAQ ACCORDION GRID
+   ============================================ */
+
+.faq__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .faq__grid {
+    animation: fade-in-up 0.8s ease-out forwards;
+    animation-delay: 0.3s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq__grid {
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   FAQ ITEM
+   ============================================ */
+
+.faq__item {
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 20px rgb(107 152 180 / 0.08);
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (hover: hover) {
+  .faq__item:hover {
+    box-shadow: 0 8px 32px rgb(107 152 180 / 0.12);
+  }
+}
+
+/* ============================================
+   FAQ QUESTION (ACCORDION TRIGGER)
+   ============================================ */
+
+.faq__question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 2rem 2.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.faq__question::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, #6B98B4, #8BB5D1);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.3s ease;
+}
+
+@media (hover: hover) {
+  .faq__question:hover::before {
+    transform: scaleY(1);
+  }
+  
+  .faq__question:hover {
+    background: rgb(107 152 180 / 0.03);
+  }
+  
+  .faq__question:hover .faq__question-text {
+    color: #6B98B4;
+  }
+}
+
+.faq__question[aria-expanded="true"]::before {
+  transform: scaleY(1);
+}
+
+.faq__question[aria-expanded="true"] .faq__question-text {
+  color: #6B98B4;
+}
+
+.faq__question-text {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: #2C5F7B;
+  line-height: 1.4;
+  flex: 1;
+  transition: color 0.3s ease;
+}
+
+.faq__icon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  color: #6B98B4;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq__question[aria-expanded="true"] .faq__icon {
+  transform: rotate(180deg);
+}
+
+/* ============================================
+   FAQ ANSWER (ACCORDION CONTENT)
+   ============================================ */
+
+.faq__answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq__question[aria-expanded="true"] + .faq__answer {
+  max-height: 1000px;
+}
+
+.faq__answer-content {
+  padding: 0 2.5rem 2.5rem 2.5rem;
+  color: #4A7A95;
+  font-size: 1.125rem;
+  line-height: 1.8;
+}
+
+.faq__answer-content p {
+  margin-bottom: 1.25rem;
+}
+
+.faq__answer-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Lists in answer content */
+.faq__answer-content ul,
+.faq__answer-content ol {
+  margin: 1.25rem 0;
+  padding-left: 1.5rem;
+}
+
+.faq__answer-content ul {
+  list-style: none;
+}
+
+.faq__answer-content ul li {
+  position: relative;
+  padding-left: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+.faq__answer-content ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.65rem;
+  width: 8px;
+  height: 8px;
+  background: #8EB937;
+  border-radius: 50%;
+}
+
+.faq__answer-content ol {
+  list-style: decimal;
+  list-style-position: outside;
+}
+
+.faq__answer-content ol li {
+  margin-bottom: 1rem;
+  padding-left: 0.5rem;
+}
+
+.faq__answer-content li:last-child {
+  margin-bottom: 0;
+}
+
+.faq__answer-content strong {
+  color: #2C5F7B;
+  font-weight: 700;
+}
+
+/* ============================================
+   LINKS IN ANSWERS
+   ============================================ */
+
+.faq__link {
+  color: #6B98B4;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.faq__link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #6B98B4;
+  transition: width 0.3s ease;
+}
+
+@media (hover: hover) {
+  .faq__link:hover {
+    color: #4A7A95;
+  }
+  
+  .faq__link:hover::after {
+    width: 100%;
+  }
+}
+
+/* ============================================
+   CALL-TO-ACTION SECTION
+   ============================================ */
+
+.faq__cta {
+  text-align: center;
+  background: linear-gradient(135deg, #6B98B4, #8BB5D1);
+  padding: 3.5rem 2.5rem;
+  border-radius: 2.5rem;
+  box-shadow: 0 12px 40px rgb(107 152 180 / 0.25);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .faq__cta {
+    animation: fade-in-up 0.8s ease-out forwards;
+    animation-delay: 0.5s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq__cta {
+    opacity: 1;
+  }
+}
+
+.faq__cta::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgb(255 255 255 / 0.1) 0%, transparent 70%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .faq__cta::before {
+    animation: gentle-rotate 60s linear infinite;
+  }
+}
+
+@keyframes gentle-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.faq__cta-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+}
+
+.faq__cta-text {
+  font-size: 1.25rem;
+  color: rgb(255 255 255 / 0.95);
+  margin-bottom: 2.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.faq__cta-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================
+   CTA BUTTONS
+   ============================================ */
+
+.faq__cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.5rem 2.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 1.25rem;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.faq__cta-button svg {
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+@media (hover: hover) {
+  .faq__cta-button:hover svg {
+    transform: scale(1.1);
+  }
+}
+
+.faq__cta-button--primary {
+  background: #fff;
+  color: #6B98B4;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.15);
+}
+
+.faq__cta-button--primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #6B98B4, #8BB5D1);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+@media (hover: hover) {
+  .faq__cta-button--primary:hover::before {
+    opacity: 1;
+  }
+  
+  .faq__cta-button--primary:hover {
+    color: #fff;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 36px rgb(0 0 0 / 0.25);
+  }
+}
+
+.faq__cta-button--primary span,
+.faq__cta-button--primary svg {
+  position: relative;
+  z-index: 1;
+}
+
+.faq__cta-button--secondary {
+  background: rgb(255 255 255 / 0.15);
+  color: #fff;
+  border: 2px solid rgb(255 255 255 / 0.3);
+}
+
+@media (hover: hover) {
+  .faq__cta-button--secondary:hover {
+    background: rgb(255 255 255 / 0.25);
+    border-color: rgb(255 255 255 / 0.5);
+    transform: translateY(-4px);
+  }
+}
+
+/* ============================================
+   TABLET BREAKPOINT (768px+)
+   ============================================ */
+
+@media (min-width: 768px) {
+  .faq {
+    padding: 5.5rem 0;
+  }
+  
+  .faq__container {
+    padding: 0 2rem;
+  }
+  
+  .faq__title {
+    font-size: 4.5rem;
+  }
+  
+  .faq__description {
+    font-size: 1.5rem;
+  }
+  
+  .faq__badge-text {
+    font-size: 1.25rem;
+  }
+  
+  .faq__grid {
+    gap: 2rem;
+  }
+  
+  .faq__question {
+    padding: 2.5rem 3rem;
+  }
+  
+  .faq__question-text {
+    font-size: 1.5rem;
+  }
+  
+  .faq__answer-content {
+    padding: 0 3rem 3rem 3rem;
+    font-size: 1.1875rem;
+  }
+  
+  .faq__cta-title {
+    font-size: 3rem;
+  }
+  
+  .faq__cta-text {
+    font-size: 1.375rem;
+  }
+  
+  .faq__cta-actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  .faq__cta-button {
+    padding: 1.5rem 3rem;
+  }
+}
+
+/* ============================================
+   DESKTOP BREAKPOINT (1024px+)
+   ============================================ */
+
+@media (min-width: 1024px) {
+  .faq {
+    padding: 6.5rem 0;
+  }
+  
+  .faq__title {
+    font-size: 5.5rem;
+  }
+  
+  .faq__description {
+    font-size: 1.625rem;
+  }
+  
+  .faq__question-text {
+    font-size: 1.625rem;
+  }
+  
+  .faq__answer-content {
+    font-size: 1.25rem;
+  }
+  
+  .faq__cta-title {
+    font-size: 3.5rem;
+  }
+  
+  .faq__cta-text {
+    font-size: 1.5rem;
+  }
+}
+
+/* ============================================
+   LARGE DESKTOP BREAKPOINT (1200px+)
+   ============================================ */
+
+@media (min-width: 1200px) {
+  .faq__title {
+    font-size: 6rem;
+  }
+  
+  .faq__description {
+    font-size: 1.75rem;
+  }
+  
+  .faq__question-text {
+    font-size: 1.75rem;
+  }
+  
+  .faq__answer-content {
+    font-size: 1.3125rem;
+  }
+}
+
+/* ============================================
+   EXTRA LARGE DESKTOP BREAKPOINT (1400px+)
+   ============================================ */
+
+@media (min-width: 1400px) {
+  .faq__title {
+    font-size: 6.5rem;
+  }
+  
+  .faq__question-text {
+    font-size: 1.875rem;
+  }
+}
+
+/* ============================================
+   FULL HD BREAKPOINT (1920px+)
+   ============================================ */
+
+@media (min-width: 1920px) {
+  .faq__container {
+    max-width: 1400px;
+  }
+  
+  .faq__title {
+    font-size: 7rem;
+  }
+  
+  .faq__description {
+    font-size: 2rem;
+  }
+  
+  .faq__question-text {
+    font-size: 2rem;
+  }
+  
+  .faq__answer-content {
+    font-size: 1.4375rem;
+  }
+  
+  .faq__cta-title {
+    font-size: 4rem;
+  }
+  
+  .faq__cta-text {
+    font-size: 1.625rem;
+  }
+  
+  .faq__cta-button {
+    font-size: 1.375rem;
+    padding: 1.75rem 3.5rem;
+  }
+}
+
+/* ============================================
+   2K/4K BREAKPOINT (2560px+)
+   ============================================ */
+
+@media (min-width: 2560px) {
+  .faq__container {
+    max-width: 1800px;
+  }
+  
+  .faq__title {
+    font-size: 8rem;
+  }
+  
+  .faq__description {
+    font-size: 2.25rem;
+  }
+  
+  .faq__question-text {
+    font-size: 2.25rem;
+  }
+  
+  .faq__answer-content {
+    font-size: 1.625rem;
+  }
+  
+  .faq__cta-title {
+    font-size: 4.5rem;
+  }
+  
+  .faq__cta-button {
+    font-size: 1.5rem;
+    padding: 2rem 4rem;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+.faq__question:focus {
+  outline: 3px solid #6B98B4;
+  outline-offset: 2px;
+}
+
+.faq__question:focus:not(:focus-visible) {
+  outline: none;
+}

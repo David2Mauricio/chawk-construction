@@ -1,0 +1,220 @@
+:root {
+    /* Brand Colors */
+    --color-primary: #6B98B4;
+    --color-primary-light: #8BB5D1;
+    --color-primary-dark: #4A7A95;
+    --color-primary-hover: #5A8DB0;
+    
+    --color-trust: #2C5F7B;
+    --color-steel: #475569;
+    --color-slate: #64748B;
+    --color-cloud: #F1F5F9;
+    --color-mist: #E2E8F0;
+    
+    /* Neutral Colors */
+    --color-white: #FFFFFF;
+    --color-black: #000000;
+    --color-dark: #1a1a1a;
+    --color-dark-gray: #333333;
+    --color-medium-gray: #666666;
+    --color-light-gray: #999999;
+    --color-gray-100: #f8f9fa;
+    --color-gray-200: #e9ecef;
+    --color-gray-300: #dee2e6;
+    
+    /* Accent Colors */
+    --color-accent-bg: #E8F4F8;
+    --color-accent-light: #F0F7FB;
+    
+    /* Status Colors */
+    --color-success: #10B981;
+    --color-success-dark: #065F46;
+    --color-success-light: #D1FAE5;
+    --color-error: #dc3545;
+    --color-emergency: #EF4444;
+    --color-emergency-dark: #DC2626;
+    
+    /* Partner Colors */
+    --color-partner: rgb(142, 185, 55);
+    --color-partner-dark: rgb(108, 145, 45);
+    --color-partner-light: #F7FBF0;
+    --color-partner-bg: #EEFAD4;
+    
+    /* Typography */
+    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
+    
+    --font-size-xs: 1.2rem;
+    --font-size-sm: 1.4rem;
+    --font-size-base: 1.6rem;
+    --font-size-md: 1.8rem;
+    --font-size-lg: 2rem;
+    --font-size-xl: 2.4rem;
+    --font-size-2xl: 3rem;
+    --font-size-3xl: 3.6rem;
+    
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+    --font-weight-black: 900;
+    
+    --line-height-tight: 1.2;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.625;
+    
+    --letter-spacing-tight: -0.02em;
+    --letter-spacing-normal: 0;
+    --letter-spacing-wide: 0.025em;
+    --letter-spacing-wider: 0.05em;
+    --letter-spacing-widest: 0.1em;
+    
+    /* Spacing */
+    --space-xs: 0.6rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2rem;
+    --space-xl: 2.5rem;
+    --space-2xl: 3rem;
+    --space-3xl: 4rem;
+    --space-4xl: 5rem;
+    --space-5xl: 4.8rem;
+    --space-6xl: 6.4rem;
+    
+    /* Container */
+    --container-padding-mobile: 1.6rem;
+    --container-padding-tablet: 2.4rem;
+    --container-padding-desktop: 3.2rem;
+    --container-max-width: 140rem;
+    --nav-height-mobile: 14rem;
+    --nav-height-desktop: 8rem;
+    
+    /* Borders */
+    --border-width-thin: 0.1rem;
+    --border-width-medium: 0.2rem;
+    --border-width-thick: 0.4rem;
+    
+    --border-radius-sm: 0.6rem;
+    --border-radius-md: 0.8rem;
+    --border-radius-lg: 1rem;
+    --border-radius-xl: 1.2rem;
+    --border-radius-2xl: 1.6rem;
+    --border-radius-full: 999.9rem;
+    
+    /* Alias for hero */
+    --radius-sm: 0.6rem;
+    --radius-md: 0.8rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.2rem;
+    --radius-2xl: 1.6rem;
+    --radius-full: 999.9rem;
+    
+    /* Shadows */
+    --shadow-xs: 0 0.1rem 0.2rem 0 rgba(0, 0, 0, 0.05);
+    --shadow-sm: 0 0.8rem 2.4rem rgba(107, 152, 180, 0.15);
+    --shadow-md: 0 1.2rem 4rem rgba(44, 95, 123, 0.12);
+    --shadow-lg: 0 2.5rem 6rem rgba(44, 95, 123, 0.25);
+    --shadow-xl: 0 0.8rem 3.2rem rgba(0, 0, 0, 0.16);
+    --shadow-2xl: 0 2rem 6rem rgba(0, 0, 0, 0.24);
+    --shadow-badge: 0 1rem 3rem rgba(107, 152, 180, 0.2);
+    --shadow-btn: 0 1.2rem 3.5rem rgba(107, 152, 180, 0.35);
+    --shadow-btn-hover: 0 1.8rem 4.5rem rgba(107, 152, 180, 0.45);
+    --shadow-card: 0 1.2rem 4rem rgba(44, 95, 123, 0.12);
+    --shadow-card-hover: 0 2.5rem 6rem rgba(44, 95, 123, 0.25);
+    --shadow-primary: 0 0.8rem 2.4rem rgba(107, 152, 180, 0.25);
+    --shadow-primary-lg: 0 1.2rem 3.2rem rgba(107, 152, 180, 0.35);
+    --shadow-inset: inset 0 0.2rem 0.4rem rgba(0, 0, 0, 0.06);
+    
+    /* Transitions */
+    --transition-fast: 0.2s;
+    --transition-base: 0.3s;
+    --transition-smooth: 0.4s;
+    --transition-slow: 0.5s;
+    --transition-slower: 0.7s;
+
+    --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-linear: linear;
+    --ease-in: cubic-bezier(0.4, 0, 1, 1);
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --ease-professional: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-elastic: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+    --ease-butter: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    
+    /* Z-Index Layers */
+    --z-base: 1;
+    --z-hero: 1;
+    --z-dropdown: 10;
+    --z-sticky: 20;
+    --z-fixed: 100;
+    --z-overlay: 40;
+    --z-mobile-menu: 110;
+    --z-submenu: 115;
+    --z-modal: 90;
+    --z-notification: 100;
+    --z-toggle: 120;
+    --z-logo: 105;
+    
+    /* Effects */
+    --backdrop-blur-sm: blur(0.4rem);
+    --backdrop-blur-md: blur(0.8rem);
+    --backdrop-blur-lg: blur(1.2rem);
+    --backdrop-blur-xl: blur(2rem);
+}
+
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-normal);
+    color: var(--color-dark);
+    background: linear-gradient(135deg, var(--color-gray-100) 0%, var(--color-white) 50%, var(--color-accent-bg) 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+    display: block;
+}
+
+img:not(.nav__logo-image) {
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul,
+ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+}
