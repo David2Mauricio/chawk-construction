@@ -46,84 +46,87 @@ import './Language.js';
             this.servicesMenuTrigger = document.getElementById('servicesMenuTrigger');
             this.servicesSubmenu = document.getElementById('servicesSubmenu');
             this.submenuBack = document.querySelector('.nav__submenu-back');
-            this.body = document.body;
-            this.html = document.documentElement;
             this.servicesDropdownTrigger = document.getElementById('servicesDropdownTrigger');
             this.megaMenu = document.getElementById('megaMenu');
-            
+            this.body = document.body;
+            this.html = document.documentElement;
+
             this.state = {
                 isMobileMenuOpen: false,
                 isSubmenuOpen: false,
                 isMegaMenuOpen: false,
                 scrollPosition: 0
             };
-            
+
+            this._langShowTimeout = null;
+
             this.init();
         }
-        
+
         init() {
             if (!this.navToggle) return;
             this.bindEvents();
             this.handleScroll();
         }
-        
+
+        // Lazy getter — TranslationHandler may not have created the element yet at constructor time
+        get langSwitcher() {
+            return document.getElementById('languageSwitcherMobile');
+        }
+
         bindEvents() {
-            this.navToggle?.addEventListener('click', (e) => {
+            this.navToggle.addEventListener('click', (e) => {
                 e.preventDefault();
                 this.toggleMobileMenu();
             });
-            
+
             this.servicesMenuTrigger?.addEventListener('click', (e) => {
                 e.preventDefault();
                 this.openSubmenu();
             });
-            
+
             this.submenuBack?.addEventListener('click', (e) => {
                 e.preventDefault();
                 this.closeSubmenu();
             });
-            
+
             this.servicesDropdownTrigger?.addEventListener('click', (e) => {
                 e.preventDefault();
                 this.toggleMegaMenu();
             });
-            
+
             document.addEventListener('click', (e) => this.handleOutsideClick(e));
-            
+
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') this.closeAll();
             });
-            
+
             let scrollTimeout;
             window.addEventListener('scroll', () => {
                 if (scrollTimeout) window.cancelAnimationFrame(scrollTimeout);
                 scrollTimeout = window.requestAnimationFrame(() => this.handleScroll());
             }, { passive: true });
-            
+
             let resizeTimeout;
             window.addEventListener('resize', () => {
                 clearTimeout(resizeTimeout);
                 resizeTimeout = setTimeout(() => this.handleResize(), 150);
             }, { passive: true });
-            
+
             this.navMobile?.addEventListener('touchmove', (e) => {
                 if (this.state.isMobileMenuOpen) e.stopPropagation();
             }, { passive: true });
-            
+
             this.servicesSubmenu?.addEventListener('touchmove', (e) => {
                 if (this.state.isSubmenuOpen) e.stopPropagation();
             }, { passive: true });
         }
-        
+
         toggleMobileMenu() {
             this.state.isMobileMenuOpen = !this.state.isMobileMenuOpen;
-            if (this.state.isMobileMenuOpen) {
-                this.openMobileMenu();
-            } else {
-                this.closeMobileMenu();
-            }
+            this.state.isMobileMenuOpen ? this.openMobileMenu() : this.closeMobileMenu();
         }
-        
+
         openMobileMenu() {
             this.state.scrollPosition = window.pageYOffset || this.html.scrollTop;
             this.navToggle.setAttribute('aria-expanded', 'true');
@@ -132,9 +135,10 @@ import './Language.js';
             this.html.style.overflow = 'hidden';
             this.body.style.overflow = 'hidden';
             this.state.isMobileMenuOpen = true;
+            this.hideLangSwitcher();
             this.app.announce('Mobile menu opened');
         }
-        
+
         closeMobileMenu() {
             this.navToggle.setAttribute('aria-expanded', 'false');
             this.navMobile.setAttribute('aria-hidden', 'true');
@@ -144,27 +148,30 @@ import './Language.js';
             window.scrollTo(0, this.state.scrollPosition);
             this.state.isMobileMenuOpen = false;
             if (this.state.isSubmenuOpen) this.closeSubmenu();
+            this.showLangSwitcher(400);
             this.app.announce('Mobile menu closed');
         }
-        
+
         openSubmenu() {
             this.servicesMenuTrigger.setAttribute('aria-expanded', 'true');
             this.servicesSubmenu.setAttribute('aria-hidden', 'false');
             this.body.classList.add('submenu-open');
             this.state.isSubmenuOpen = true;
             this.navToggle.classList.add('nav__toggle--submenu-open');
+            this.hideLangSwitcher();
             this.app.announce('Services submenu opened');
         }
-        
+
         closeSubmenu() {
             this.servicesMenuTrigger.setAttribute('aria-expanded', 'false');
             this.servicesSubmenu.setAttribute('aria-hidden', 'true');
             this.body.classList.remove('submenu-open');
             this.state.isSubmenuOpen = false;
             this.navToggle.classList.remove('nav__toggle--submenu-open');
+            if (!this.state.isMobileMenuOpen) this.showLangSwitcher(400);
             this.app.announce('Services submenu closed');
         }
-        
+
         toggleMegaMenu() {
             this.state.isMegaMenuOpen = !this.state.isMegaMenuOpen;
             if (this.state.isMegaMenuOpen) {
@@ -177,7 +184,40 @@ import './Language.js';
                 this.app.announce('Services menu closed');
             }
         }
-        
+
+        hideLangSwitcher() {
+            const el = this.langSwitcher;
+            if (!el) return;
+
+            if (this._langShowTimeout) {
+                clearTimeout(this._langShowTimeout);
+                this._langShowTimeout = null;
+            }
+
+            el.style.transition = 'opacity 200ms ease';
+            el.style.opacity = '0';
+            el.style.pointerEvents = 'none';
+            el.style.visibility = 'hidden';
+        }
+
+        showLangSwitcher(delay = 0) {
+            if (this._langShowTimeout) {
+                clearTimeout(this._langShowTimeout);
+                this._langShowTimeout = null;
+            }
+
+            this._langShowTimeout = setTimeout(() => {
+                const el = this.langSwitcher;
+                if (!el) return;
+
+                el.style.transition = 'opacity 400ms ease';
+                el.style.opacity = '1';
+                el.style.pointerEvents = 'auto';
+                el.style.visibility = 'visible';
+                this._langShowTimeout = null;
+            }, delay);
+        }
+
         handleOutsideClick(e) {
             if (this.megaMenu && this.state.isMegaMenuOpen) {
                 if (!this.megaMenu.contains(e.target) && !this.servicesDropdownTrigger.contains(e.target)) {
@@ -186,48 +226,48 @@ import './Language.js';
                     this.megaMenu.setAttribute('aria-hidden', 'true');
                 }
             }
-            
+
             if (this.navOverlay && e.target === this.navOverlay) {
                 this.closeMobileMenu();
             }
         }
-        
+
         handleScroll() {}
-        
+
         handleResize() {
             const isDesktop = window.innerWidth >= 1024;
-            
+
             if (isDesktop) {
                 if (this.state.isMobileMenuOpen) this.closeMobileMenu();
                 if (this.state.isSubmenuOpen) this.closeSubmenu();
             } else {
                 if (this.state.isMegaMenuOpen) {
                     this.state.isMegaMenuOpen = false;
-                    if (this.servicesDropdownTrigger) this.servicesDropdownTrigger.setAttribute('aria-expanded', 'false');
-                    if (this.megaMenu) this.megaMenu.setAttribute('aria-hidden', 'true');
+                    this.servicesDropdownTrigger?.setAttribute('aria-expanded', 'false');
+                    this.megaMenu?.setAttribute('aria-hidden', 'true');
                 }
             }
         }
-        
+
         closeAll() {
             if (this.state.isMobileMenuOpen) this.closeMobileMenu();
             if (this.state.isSubmenuOpen) this.closeSubmenu();
             if (this.state.isMegaMenuOpen) {
                 this.state.isMegaMenuOpen = false;
-                if (this.servicesDropdownTrigger) this.servicesDropdownTrigger.setAttribute('aria-expanded', 'false');
-                if (this.megaMenu) this.megaMenu.setAttribute('aria-hidden', 'true');
+                this.servicesDropdownTrigger?.setAttribute('aria-expanded', 'false');
+                this.megaMenu?.setAttribute('aria-hidden', 'true');
             }
         }
-        
+
         getState() {
             return { ...this.state };
         }
-        
+
         destroy() {
             this.html.style.overflow = '';
             this.body.style.overflow = '';
             this.body.classList.remove('submenu-open');
-            this.nav?.classList.remove('scrolled');
+            this.showLangSwitcher(0);
         }
     }
     
