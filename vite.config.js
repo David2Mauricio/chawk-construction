@@ -2,11 +2,12 @@
  * VITE CONFIGURATION - C HAWK CONSTRUCTION
  * 
  * @fileoverview Production build configuration with advanced optimization
- * @version 1.0.0
+ * @version 2.0.0 - MULTI-PAGE SUPPORT ADDED
  * @author David Mauricio Herazo Lopez
  * 
  * @description
  * Comprehensive Vite configuration for optimal production builds including:
+ * - Multi-page application support (index, contact, services, etc.)
  * - CSS code splitting and lazy loading
  * - JavaScript chunking strategy
  * - Asset optimization and fingerprinting
@@ -27,10 +28,12 @@
  * 
  * @requires vite
  * @requires vite-plugin-html
+ * @requires path (Node.js built-in)
  */
 
 import { defineConfig } from 'vite';
 import { createHtmlPlugin } from 'vite-plugin-html';
+import { resolve } from 'path';
 
 export default defineConfig({
   // ============================================================================
@@ -120,6 +123,31 @@ export default defineConfig({
      * Controls code splitting and asset handling
      */
     rollupOptions: {
+      /**
+       * ========================================================================
+       * MULTI-PAGE APPLICATION CONFIGURATION
+       * ========================================================================
+       * Define all HTML entry points for the application
+       * Each HTML file will be processed and included in the build
+       * 
+       * Add new pages here as you create them:
+       * - index: Main homepage
+       * - contact: Contact page
+       * - services: Services listing (future)
+       * - portfolio: Portfolio/Gallery (future)
+       * - about: About page (future)
+       * - blog: Blog listing (future)
+       */
+      input: {
+        main: resolve(__dirname, 'index.html'),
+        contact: resolve(__dirname, 'contact.html'),
+        // Uncomment and add as you create new pages:
+        // services: resolve(__dirname, 'services.html'),
+        // portfolio: resolve(__dirname, 'portfolio.html'),
+        // about: resolve(__dirname, 'about.html'),
+        // blog: resolve(__dirname, 'blog.html'),
+      },
+      
       output: {
         /**
          * Manual chunk splitting strategy

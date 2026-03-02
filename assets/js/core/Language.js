@@ -545,7 +545,129 @@ const translations = {
         developer: {
             credit: { en: "Designed & Developed by", es: "Diseñado y Desarrollado por" }
         }
+    },
+     // ============================================================
+  // CONTACT PAGE
+  // ============================================================
+  contact: {
+
+    // Hero
+    hero: {
+      badge:        { en: "GET IN TOUCH WITH OUR TEAM",                                                              es: "CONTÁCTATE CON NUESTRO EQUIPO" },
+      title:        { en: "Let's Build",                                                                             es: "Construyamos" },
+      titleAccent:  { en: "Your Dream Home",                                                                         es: "Tu Hogar Ideal" },
+      description:  { en: "Our licensed Pennsylvania team is ready to transform your vision into reality. With 2000+ completed projects since 2021, we bring expertise, passion, and dedication to every job.", es: "Nuestro equipo licenciado en Pennsylvania está listo para transformar tu visión en realidad. Con más de 2000 proyectos completados desde 2021, aportamos experiencia, pasión y dedicación a cada trabajo." },
+      stat1Number:  { en: "24h",          es: "24h" },
+      stat1Label:   { en: "Response Time", es: "Tiempo de Respuesta" },
+      stat2Label:   { en: "Projects",     es: "Proyectos" },
+      stat3Label:   { en: "Rating",       es: "Calificación" },
+      ctaCall:      { en: "Call Now",     es: "Llamar Ahora" },
+      ctaForm:      { en: "Send Message", es: "Enviar Mensaje" },
+      licenseLabel: { en: "Licensed",     es: "Licenciado" }
+    },
+
+    // Team
+    team: {
+      title:          { en: "Meet Our",                    es: "Conoce a Nuestro" },
+      titleAccent:    { en: "Leadership Team",             es: "Equipo Directivo" },
+      subtitle:       { en: "Experienced professionals dedicated to your project success", es: "Profesionales con experiencia dedicados al éxito de tu proyecto" },
+      member1Role:    { en: "Financial & Administrative Director", es: "Director Financiero y Administrativo" },
+      member1Desc:    { en: "Manages financial operations, budget planning, and administrative oversight to ensure project efficiency", es: "Gestiona operaciones financieras, planificación presupuestaria y supervisión administrativa para garantizar la eficiencia del proyecto" },
+      member2Role:    { en: "Operations & Logistics Director", es: "Director de Operaciones y Logística" },
+      member2Desc:    { en: "Coordinates project logistics, materials procurement, and operational execution for seamless delivery", es: "Coordina la logística del proyecto, adquisición de materiales y ejecución operativa para una entrega impecable" },
+      linkedinConnect: { en: "Connect on LinkedIn", es: "Conectar en LinkedIn" }
+    },
+
+    // Contact Methods
+    methods: {
+      title:    { en: "Choose Your Preferred Contact Method",                    es: "Elige Tu Método de Contacto Preferido" },
+      subtitle: { en: "We're here to help you bring your remodeling vision to life", es: "Estamos aquí para ayudarte a hacer realidad tu visión de remodelación" },
+
+      call: {
+        badge:       { en: "FASTEST",                                            es: "MÁS RÁPIDO" },
+        title:       { en: "Call Us Directly",                                   es: "Llámanos Directamente" },
+        description: { en: "Speak with our Pennsylvania team for immediate assistance and quick answers", es: "Habla con nuestro equipo de Pennsylvania para asistencia inmediata y respuestas rápidas" },
+        label:       { en: "Phone",                                              es: "Teléfono" },
+        feature1:    { en: "Immediate response",                                 es: "Respuesta inmediata" },
+        feature2:    { en: "Mon-Sat 8AM-6PM",                                   es: "Lun-Sáb 8AM-6PM" },
+        feature3:    { en: "Free consultation",                                  es: "Consulta gratuita" },
+        button:      { en: "Call Now",                                           es: "Llamar Ahora" }
+      },
+
+      email: {
+        badge:       { en: "DETAILED",                                           es: "DETALLADO" },
+        title:       { en: "Email Us",                                           es: "Escríbenos" },
+        description: { en: "Send detailed messages about your project with photos and specifications", es: "Envía mensajes detallados sobre tu proyecto con fotos y especificaciones" },
+        label:       { en: "Email",                                              es: "Correo" },
+        feature1:    { en: "24h response time",                                  es: "Respuesta en 24h" },
+        feature2:    { en: "Attach photos",                                      es: "Adjunta fotos" },
+        feature3:    { en: "Detailed responses",                                 es: "Respuestas detalladas" },
+        button:      { en: "Send Email",                                         es: "Enviar Correo" }
+      },
+
+      schedule: {
+        badge:       { en: "FLEXIBLE",                                           es: "FLEXIBLE" },
+        title:       { en: "Schedule Consultation",                              es: "Agenda una Consulta" },
+        description: { en: "Book a free virtual or on-site consultation at your convenience", es: "Reserva una consulta gratuita virtual o presencial a tu conveniencia" },
+        label:       { en: "Availability",                                       es: "Disponibilidad" },
+        value:       { en: "Mon-Sat: 8AM-6PM",                                  es: "Lun-Sáb: 8AM-6PM" },
+        feature1:    { en: "Virtual or on-site",                                 es: "Virtual o presencial" },
+        feature2:    { en: "No obligation",                                      es: "Sin compromiso" },
+        feature3:    { en: "Expert guidance",                                    es: "Orientación experta" },
+        button:      { en: "Schedule Now",                                       es: "Agendar Ahora" }
+      }
+    },
+
+    // Contact Form
+    form: {
+      title:              { en: "Send Us a Message",                             es: "Envíanos un Mensaje" },
+      subtitle:           { en: "Fill out the form and we'll get back to you within 24 hours", es: "Completa el formulario y te responderemos en 24 horas" },
+      nameLabel:          { en: "Your Name *",                                   es: "Tu Nombre *" },
+      namePlaceholder:    { en: "John Smith",                                    es: "Juan García" },
+      emailLabel:         { en: "Email Address *",                               es: "Correo Electrónico *" },
+      emailPlaceholder:   { en: "john@email.com",                                es: "juan@correo.com" },
+      phoneLabel:         { en: "Phone Number *",                                es: "Número de Teléfono *" },
+      locationLabel:      { en: "Your Location *",                               es: "Tu Ubicación *" },
+      locationPlaceholder:{ en: "Select your area...",                           es: "Selecciona tu área..." },
+      subjectLabel:       { en: "Project Type *",                                es: "Tipo de Proyecto *" },
+      subjectPlaceholder: { en: "Select project type...",                        es: "Selecciona el tipo de proyecto..." },
+      subjectKitchen:     { en: "Kitchen Remodeling",                            es: "Remodelación de Cocina" },
+      subjectBathroom:    { en: "Bathroom Renovation",                           es: "Renovación de Baño" },
+      subjectFullHome:    { en: "Full Home Remodel",                             es: "Remodelación Completa del Hogar" },
+      subjectCarpentry:   { en: "Carpentry Services",                            es: "Servicios de Carpintería" },
+      subjectFlooring:    { en: "Flooring Installation",                         es: "Instalación de Pisos" },
+      subjectOther:       { en: "Other",                                         es: "Otro" },
+      messageLabel:       { en: "Your Message *",                                es: "Tu Mensaje *" },
+      messagePlaceholder: { en: "Tell us about your project...",                 es: "Cuéntanos sobre tu proyecto..." },
+      submitButton:       { en: "Send Message",                                  es: "Enviar Mensaje" },
+      trust1:             { en: "Your information is secure",                    es: "Tu información está segura" },
+      trust2:             { en: "24h response guaranteed",                       es: "Respuesta en 24h garantizada" }
+    },
+
+    // Trust Cards
+    trust: {
+      licensedTitle: { en: "Licensed & Insured",        es: "Licenciado y Asegurado" },
+      licensedText:  { en: "PA190465 with full insurance coverage", es: "PA190465 con cobertura total de seguro" },
+      ratingTitle:   { en: "5.0 Star Rating",           es: "Calificación 5.0 Estrellas" },
+      ratingText:    { en: "2000+ satisfied customers", es: "2000+ clientes satisfechos" }
+    },
+
+    // Testimonials
+    testimonials: {
+      title:             { en: "What Our",                                       es: "Lo Que Dicen" },
+      titleAccent:       { en: "Customers Say",                                  es: "Nuestros Clientes" },
+      subtitle:          { en: "Real feedback from Pennsylvania & Maryland homeowners", es: "Opiniones reales de propietarios de Pennsylvania y Maryland" },
+      customer1Name:     { en: "Sarah M.",     es: "Sarah M." },
+      customer1Location: { en: "York, PA",     es: "York, PA" },
+      customer1Text:     { en: '"Outstanding kitchen remodel! The team was professional, punctual, and the quality exceeded our expectations. Highly recommend C Hawk Construction."', es: '"¡Remodelación de cocina excepcional! El equipo fue profesional, puntual y la calidad superó nuestras expectativas. Recomiendo ampliamente C Hawk Construction."' },
+      customer2Name:     { en: "Michael R.",   es: "Michael R." },
+      customer2Location: { en: "Hanover, PA",  es: "Hanover, PA" },
+      customer2Text:     { en: '"From start to finish, C Hawk made our bathroom renovation stress-free. Amazing craftsmanship and attention to detail. Worth every penny!"', es: '"De principio a fin, C Hawk hizo que nuestra renovación de baño fuera sin estrés. ¡Artesanía increíble y atención al detalle. Valió cada centavo!"' },
+      customer3Name:     { en: "Jennifer L.",  es: "Jennifer L." },
+      customer3Location: { en: "Baltimore, MD", es: "Baltimore, MD" },
+      customer3Text:     { en: '"Best decision we made! The team transformed our outdated home into a modern masterpiece. Professional, reliable, and incredibly skilled."', es: '"¡La mejor decisión que tomamos! El equipo transformó nuestra casa anticuada en una obra maestra moderna. Profesionales, confiables e increíblemente hábiles."' }
     }
+  }
 };
 
 
