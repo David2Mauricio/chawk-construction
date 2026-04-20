@@ -1,0 +1,286 @@
+/* ============================================================
+   BLOG — ARTICLE HERO
+   BEM · Mobile-first
+   Blocks: .article-hero · .article-layout
+   ============================================================ */
+
+
+/* ---- article-hero ---- */
+
+.article-hero {
+    position: relative;
+    padding-top: calc(var(--nav-height-mobile) + 3rem);
+    padding-bottom: 4rem;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.article-hero__bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        160deg,
+        rgba(255, 255, 255, 0.97) 0%,
+        rgba(241, 245, 249, 0.94) 45%,
+        rgba(232, 244, 248, 0.92) 100%
+    );
+    z-index: 1;
+}
+
+.article-hero__mesh {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(107, 152, 180, 0.03) 0.1rem, transparent 0.1rem),
+        linear-gradient(90deg, rgba(107, 152, 180, 0.03) 0.1rem, transparent 0.1rem);
+    background-size: 6rem 6rem;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.article-hero__container {
+    position: relative;
+    z-index: 4;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--container-padding-mobile);
+}
+
+
+/* ---- Breadcrumb ---- */
+
+.article-hero__breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    font-size: var(--font-size-xs);
+    color: var(--color-medium-gray);
+    margin-bottom: var(--space-lg);
+    a {
+            color: var(--color-primary);
+    font-weight: var(--font-weight-medium);
+    transition: color var(--transition-fast) var(--ease-in-out);
+    }
+}
+
+/* Julian Joel Jimenez update */
+
+.article-hero__breadcrumb a:hover {
+    color: var(--color-primary-dark);
+}
+
+.article-hero__breadcrumb-sep {
+    display: flex;
+    align-items: center;
+    color: var(--color-light-gray);
+}
+
+
+/* ---- Category badge ---- */
+
+.article-hero__category {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    color: var(--color-white);
+    padding: 0.6rem 1.6rem;
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wider);
+    margin-bottom: var(--space-lg);
+}
+
+.article-hero__category svg {
+    flex-shrink: 0;
+}
+
+
+/* ---- Title ---- */
+
+.article-hero__title {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-black);
+    line-height: var(--line-height-tight);
+    color: var(--color-trust);
+    margin: 0 0 var(--space-lg);
+    letter-spacing: var(--letter-spacing-tight);
+}
+
+.article-hero__title-accent {
+    display: inline;
+    background: linear-gradient(
+        135deg,
+        var(--color-primary),
+        var(--color-primary-light),
+        var(--color-primary-dark)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+
+/* ---- Meta bar ---- */
+
+.article-hero__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    align-items: center;
+    margin-bottom: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+    border-bottom: 0.1rem solid var(--color-mist);
+}
+
+.article-hero__meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: var(--font-size-xs);
+    color: var(--color-medium-gray);
+    line-height: 1;
+}
+
+.article-hero__meta-item svg {
+    flex-shrink: 0;
+    color: var(--color-primary);
+}
+
+.article-hero__meta-item strong {
+    color: var(--color-dark);
+    font-weight: var(--font-weight-semibold);
+}
+
+.article-hero__meta-item time {
+    color: inherit;
+}
+
+
+/* ---- Hero image ---- */
+
+.article-hero__image-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    margin:auto;
+}
+
+.article-hero__image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center center;
+}
+ 
+
+.article-hero__image-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(44, 95, 123, 0.8));
+    padding: 3rem 2rem 1.6rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-relaxed);
+}
+
+.article-layout {
+    padding: 4rem 0 5rem;
+}
+
+.article-layout__container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--container-padding-mobile);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+}
+
+
+/* ============================================================
+   TABLET  ≥ 768px
+   ============================================================ */
+
+@media (min-width: 768px) {
+
+    .article-hero {
+        padding-top: calc(var(--nav-height-desktop) + 4rem);
+        padding-bottom: 5rem;
+    }
+
+    .article-hero__container {
+        padding: 0 var(--container-padding-tablet);
+    }
+
+    .article-hero__title {
+        font-size: 3.2rem;
+    }
+
+    .article-hero__image-wrapper {
+        border-radius: var(--radius-2xl);
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .article-hero__meta {
+        gap: 2rem;
+    }
+
+    .article-layout__container {
+        padding: 0 var(--container-padding-tablet);
+    }
+
+}
+
+
+/* ============================================================
+   DESKTOP  ≥ 1220px
+   ============================================================ */
+
+@media (min-width: 1220px) {
+
+    .article-hero {
+        padding-bottom: 6rem;
+    }
+
+    .article-hero__image-wrapper {
+        max-width: 80rem;
+        aspect-ratio: 2 / 1;
+    }
+
+    .article-hero__container {
+        padding: 0 var(--container-padding-desktop);
+    }
+
+    .article-hero__title {
+        font-size: 4.4rem;
+        max-width: 86rem;
+    }
+
+    .article-hero__meta {
+        gap: 2.4rem;
+    }
+
+    .article-layout {
+        padding: 5rem 0 8rem;
+    }
+
+    .article-layout__container {
+        padding: 0 var(--container-padding-desktop);
+        grid-template-columns: 1fr 36rem;
+        gap: 5rem;
+        align-items: start;
+    }
+
+}

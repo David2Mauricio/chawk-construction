@@ -73,7 +73,7 @@
                     project: "Kitchen Remodel"
                 },
                 {
-                    name: "Mauricio Herazo",
+                    name: "Paul Smith",
                     location: "Hanover, PA",
                     text: "Incredible transformation of our master bathroom. The team was courteous, efficient, and the craftsmanship is top-notch. Worth every penny!",
                     project: "Master Bathroom"

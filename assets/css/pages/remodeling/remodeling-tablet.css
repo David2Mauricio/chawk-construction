@@ -1,0 +1,109 @@
+/**
+ * FULL REMODELING PAGE — TABLET STYLES
+ *
+ * @file        remodeling-tablet.css
+ * @description Responsive overrides for 768px and above.
+ *              Loaded only when viewport matches — zero cost on mobile.
+ * @version     1.0.0
+ * @author      Herazo Lopez David Mauricio
+ * @license     Proprietary — C Hawk Construction and Renovation LLC
+ */
+
+
+/* =============================================================================
+   TABLET  (768px+)
+   ============================================================================= */
+
+@media (min-width: 768px) {
+
+  /* Hero */
+  .svc-hero {
+    padding-top: calc(var(--nav-height-desktop) + var(--space-4xl));
+  }
+
+  .svc-hero__container {
+    padding: 0 var(--container-padding-tablet);
+    padding-bottom: var(--space-6xl);
+  }
+
+  .svc-hero__title {
+    font-size: 5.6rem;
+  }
+
+  .svc-hero__actions {
+    flex-direction: row;
+  }
+
+  .svc-hero__cta {
+    width: auto;
+  }
+
+  /* All section containers */
+  .svc-included__container,
+  .svc-process__container,
+  .svc-stats__container,
+  .svc-testimonials__container,
+  .svc-areas__container,
+  .svc-cta__container {
+    padding: 0 var(--container-padding-tablet);
+  }
+
+  /* Before/After grid — side by side */
+  .svc-ba__grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 50rem;
+    align-items: stretch;
+  }
+
+  .svc-ba {
+    height: 100%;
+  }
+
+  .svc-ba__wrapper {
+    aspect-ratio: unset;
+    height: 100%;
+  }
+
+  /* Included grid */
+  .svc-included__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .svc-included__cta {
+    flex-direction: row;
+    text-align: left;
+    justify-content: space-between;
+  }
+
+  /* Process */
+  .svc-process__steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Stats */
+  .svc-stats__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* Testimonials */
+  .svc-testimonials__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Areas */
+  .svc-areas__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* CTA */
+  .svc-cta__actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .svc-cta__btn {
+    width: auto;
+    max-width: none;
+  }
+
+}

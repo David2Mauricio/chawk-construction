@@ -1,0 +1,168 @@
+/* ============================================================
+   BLOG — ARTICLE COST TABLE
+   BEM · Mobile-first
+   Block: .cost-table
+   ============================================================ */
+
+
+/* ---- cost-table ---- */
+
+.cost-table {
+    background: var(--color-white);
+    border: 0.1rem solid var(--color-mist);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    margin: var(--space-xl) 0;
+}
+
+.cost-table__header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.6rem 2rem;
+    background: linear-gradient(135deg, var(--color-trust), var(--color-primary-dark));
+    color: var(--color-white);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+}
+
+.cost-table__header svg {
+    flex-shrink: 0;
+    opacity: 0.85;
+}
+
+/* Scrollable wrapper on mobile */
+.cost-table__wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.cost-table__table {
+    width: 100%;
+    min-width: 52rem;
+    border-collapse: collapse;
+    font-size: var(--font-size-sm);
+}
+
+/* Head */
+.cost-table__table thead tr {
+    background: var(--color-cloud);
+    border-bottom: 0.2rem solid var(--color-mist);
+}
+
+.cost-table__table th {
+    padding: 1.2rem 1.6rem;
+    text-align: left;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-trust);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wider);
+    white-space: nowrap;
+}
+
+.cost-table__table th:first-child {
+    width: 16rem;
+}
+
+/* Rows */
+.cost-table__row {
+    border-bottom: 0.1rem solid var(--color-cloud);
+    transition: background var(--transition-fast) var(--ease-in-out);
+}
+
+.cost-table__row:last-child {
+    border-bottom: none;
+}
+
+.cost-table__row:hover {
+    background: var(--color-accent-light);
+}
+
+.cost-table__row--minor { border-left: 0.4rem solid var(--color-primary-light); }
+.cost-table__row--mid   { border-left: 0.4rem solid var(--color-primary); }
+.cost-table__row--major { border-left: 0.4rem solid var(--color-trust); }
+
+.cost-table__table td {
+    padding: 1.4rem 1.6rem;
+    color: var(--color-dark-gray);
+    line-height: var(--line-height-normal);
+    vertical-align: top;
+}
+
+/* Tier label pill */
+.cost-table__tier {
+    white-space: nowrap;
+}
+
+.cost-table__tier-label {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+}
+
+.cost-table__tier-label--minor {
+    background: rgba(139, 181, 209, 0.15);
+    color: var(--color-primary-dark);
+}
+
+.cost-table__tier-label--mid {
+    background: rgba(107, 152, 180, 0.18);
+    color: var(--color-primary-dark);
+}
+
+.cost-table__tier-label--major {
+    background: rgba(44, 95, 123, 0.12);
+    color: var(--color-trust);
+}
+
+/* Price cell */
+.cost-table__price {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-trust);
+    white-space: nowrap;
+}
+
+/* ROI cell */
+.cost-table__roi {
+    font-weight: var(--font-weight-bold);
+    white-space: nowrap;
+}
+
+.cost-table__roi--high   { color: #059669; }
+.cost-table__roi--medium { color: var(--color-primary-dark); }
+.cost-table__roi--low    { color: var(--color-steel); }
+
+/* Source line */
+.cost-table__source {
+    padding: 1rem 2rem;
+    font-size: var(--font-size-xs);
+    color: var(--color-light-gray);
+    font-style: italic;
+    border-top: 0.1rem solid var(--color-cloud);
+    background: var(--color-gray-100);
+    margin: 0;
+}
+
+
+/* ============================================================
+   TABLET  ≥ 768px
+   ============================================================ */
+
+@media (min-width: 768px) {
+
+    .cost-table__table {
+        min-width: unset;
+    }
+
+    .cost-table__table th,
+    .cost-table__table td {
+        padding: 1.6rem 2rem;
+    }
+
+}

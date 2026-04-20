@@ -3,120 +3,203 @@
  *
  * @file        contact-desktop.css
  * @description Responsive overrides for 1024px and above.
- *              Also includes accessibility focus styles and reduced-motion
- *              (these are global and small — grouped here to minimize requests).
- * @version     1.0.0
+ * @version     4.3.0
  * @author      David Mauricio Herazo Lopez
  * @license     Proprietary — C Hawk Construction and Renovation LLC
  */
 
-/* =============================================================================
-   DESKTOP  (1024px+)
-   ============================================================================= */
-
 @media (min-width: 1024px) {
-  .contact-hero__container,
-  .team-members__container,
-  .contact-methods__container,
-  .contact-form-section__container,
-  .testimonials__container {
-    padding: 0 var(--container-padding-desktop);
-  }
 
-  .contact-hero__title {
-    font-size: 7.2rem;
-    min-height: calc(7.2rem * var(--line-height-tight) * 2);
-  }
+    .contact-hero__container,
+    .trust-band__container,
+    .contact-methods__container,
+    .team-members__container,
+    .contact-form-section__container,
+    .testimonials__container {
+        padding: 0 var(--container-padding-desktop);
+    }
 
-  .team-members__grid {
-    gap: var(--space-6xl);
-    max-width: 100rem;
-    grid-template-columns: repeat(2, 1fr);
-    align-items: start;
-  }
+    .contact-hero__container {
+        padding: calc(var(--nav-height-desktop) + var(--space-6xl)) var(--container-padding-desktop) var(--space-3xl);
+    }
 
-  .team-member__image-wrapper {
-    width: 24rem;
-    height: 24rem;
-  }
+    /* Hero typography */
+    .contact-hero__title { font-size: 6.4rem; }
 
-  .contact-methods__grid {
-    grid-template-columns: repeat(3, 1fr);
-    align-items: stretch;
-  }
+    .contact-hero__content { max-width: 50%; }
+    .contact-hero__media   { flex: 0 0 48%; }
 
-  .contact-method {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: space-between;
-  }
+    .contact-hero__stat--featured .contact-hero__stat-number { font-size: 4.8rem; }
+    .contact-hero__stat--sm .contact-hero__stat-number       { font-size: var(--font-size-3xl); }
 
-  .testimonials__grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+    /*
+     * Primary card HTML structure (cannot change):
+     *   article.contact-method--primary
+     *     div.contact-method__icon-wrapper
+     *     div.contact-method__body
+     *       h3.contact-method__title
+     *       p.contact-method__description
+     *       div.contact-method__info
+     *       ul.contact-method__features
+     *     a.contact-method__button   ← sibling of body, NOT inside it
+     *
+     * Strategy: article is a 4-col grid.
+     * Col 1: icon-wrapper
+     * Col 2: body (title + desc stacked)
+     * Col 3: phone info (pulled out of body flow via grid)
+     * Col 4: button
+     * Features hidden at desktop to keep the single line clean.
+     */
+    .contact-method--primary {
+        display: grid;
+        grid-template-columns: auto 1fr auto auto;
+        grid-template-rows: 1fr;
+        align-items: center;
+        gap: 0;
+        padding: var(--space-2xl) var(--space-4xl);
+    }
 
-  .contact-form-section__trust-cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
+    /* Col 1: icon */
+    .contact-method--primary .contact-method__icon-wrapper {
+        grid-column: 1;
+        margin-bottom: 0;
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-xs);
+        padding-right: var(--space-2xl);
+    }
 
-  .contact-form-section__grid {
-    grid-template-columns: 1fr 1fr;
-    align-items: stretch;
-  }
+    .contact-method--primary .contact-method__icon {
+        width: 5.6rem;
+        height: 5.6rem;
+    }
 
-  .contact-form-section__form-wrapper {
-    height: 100%;
-  }
+    .contact-method--primary .contact-method__badge {
+        position: static;
+        display: inline-block;
+    }
 
-  .contact-form-section__media {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
+    /* Col 2: body — title + description only, features hidden */
+    .contact-method--primary .contact-method__body {
+        grid-column: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0;
+        padding: 0 var(--space-2xl);
+        border-left: 0.1rem solid rgba(255, 255, 255, 0.2);
+        min-width: 0;
+    }
 
-  .contact-form-section__image-wrapper {
-    flex: 1;
-    min-height: 0;
-  }
+    .contact-method--primary .contact-method__title {
+        font-size: var(--font-size-xl);
+        margin-bottom: var(--space-xs);
+        white-space: nowrap;
+    }
 
-  .contact-form-section__image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-}
+    .contact-method--primary .contact-method__description {
+        font-size: var(--font-size-sm);
+        margin-bottom: 0;
+    }
 
+    /* Info and features inside body — info shown, features hidden */
+    .contact-method--primary .contact-method__info    { display: none; }
+    .contact-method--primary .contact-method__features { display: none; }
 
-/* =============================================================================
-   ACCESSIBILITY
-   ============================================================================= */
+    /* Col 3: phone — pulled out and placed as a pseudo-column via wrapper trick.
+     * Since info is inside body we show it separately using an adjacent approach:
+     * We un-hide and position it via grid on the article directly.
+     * To do this cleanly we move it out of body flow with absolute + grid area. */
 
-.contact-form__input:focus,
-.contact-form__select:focus,
-.contact-form__textarea:focus,
-.contact-form__submit:focus,
-.contact-hero__cta:focus,
-.contact-method__button:focus {
-  outline: 0.3rem solid var(--color-primary);
-  outline-offset: 0.2rem;
-}
+    /*
+     * Simpler approach: keep features hidden, show phone inline in body
+     * but limit body to title+desc, and use ::after on body to create divider.
+     * Actually the cleanest solution: show info inside body but make body
+     * a 2-col mini-grid: [title+desc] [phone]
+     */
+    .contact-method--primary .contact-method__body {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
+        column-gap: var(--space-3xl);
+        align-items: center;
+    }
 
-.contact-form__input:focus:not(:focus-visible),
-.contact-form__select:focus:not(:focus-visible),
-.contact-form__textarea:focus:not(:focus-visible),
-.contact-form__submit:focus:not(:focus-visible),
-.contact-hero__cta:focus:not(:focus-visible),
-.contact-method__button:focus:not(:focus-visible) {
-  outline: none;
-}
+    .contact-method--primary .contact-method__title       { grid-column: 1; grid-row: 1; margin-bottom: 0; }
+    .contact-method--primary .contact-method__description { grid-column: 1; grid-row: 2; margin-bottom: 0; }
 
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+    .contact-method--primary .contact-method__info {
+        display: block;
+        grid-column: 2;
+        grid-row: 1 / 3;
+        margin-bottom: 0;
+        border-left: 0.1rem solid rgba(255, 255, 255, 0.2);
+        padding-left: var(--space-3xl);
+        align-self: center;
+    }
+
+    .contact-method--primary .contact-method__value--phone {
+        font-size: var(--font-size-2xl);
+        white-space: nowrap;
+    }
+
+    /* Col 4: button — always last column, never overlapping */
+    .contact-method--primary .contact-method__button {
+        grid-column: 4;
+        position: static;
+        width: auto;
+        white-space: nowrap;
+        flex-shrink: 0;
+        margin: 0 0 0 var(--space-2xl);
+        padding: var(--space-lg) var(--space-3xl);
+        align-self: center;
+    }
+
+    /* Secondary method cards: equal height */
+    .contact-methods__secondary {
+        grid-template-columns: repeat(2, 1fr);
+        align-items: stretch;
+    }
+
+    .contact-method--secondary {
+        height: 100%;
+        justify-content: space-between;
+    }
+
+    /* Team: two compact columns */
+    /* Team: two columns, more gap and wider at desktop */
+    .team-members__grid {
+        flex-direction: row;
+        gap: var(--space-4xl);
+        max-width: 100rem;
+    }
+
+    .team-member { flex: 1; min-width: 0; }
+
+    /* Form section */
+    .contact-form-section__grid {
+        grid-template-columns: 1.1fr 1fr;
+        align-items: stretch;
+        gap: var(--space-5xl);
+    }
+
+    .contact-form-section__form-wrapper { height: 100%; }
+    .contact-form-section__sidebar { height: 100%; }
+
+    .contact-form-section__image-wrapper {
+        flex: 1;
+        min-height: 0;
+        max-height: none;
+    }
+
+    /* Testimonials */
+    .testimonials__grid {
+        grid-template-columns: 1.4fr 1fr;
+        align-items: start;
+    }
+
+    .testimonials__secondary { grid-template-columns: 1fr; }
+
 }

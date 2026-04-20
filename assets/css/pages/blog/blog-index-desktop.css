@@ -1,0 +1,69 @@
+/*
+ * ============================================================
+ * BLOG INDEX — DESKTOP OVERRIDES  (min-width: 1220px)
+ * Author  : David Mauricio Herazo Lopez
+ * Project : C Hawk Construction and Renovation LLC — PA190465
+ * File    : /assets/css/pages/blog/blog-index-desktop.css
+ * Scope   : Full desktop layout, wider containers,
+ *           horizontal CTA actions, topic cards vertical.
+ *           Loaded conditionally: media="(min-width:1220px)"
+ * ============================================================
+ */
+
+@media (min-width: 1220px) {
+
+    /* --------------------------------------------------------
+       CONTAINERS — wide padding
+       -------------------------------------------------------- */
+
+    .blog-hero__container,
+    .blog-featured__container,
+    .blog-grid-section__container,
+    .blog-cta-strip__container,
+    .blog-topics__container {
+        padding: 0 var(--container-padding-desktop);
+    }
+
+
+    /* --------------------------------------------------------
+       FEATURED CARD — asymmetric columns
+       -------------------------------------------------------- */
+
+    .blog-featured__card {
+        grid-template-columns: 1.1fr .9fr;
+    }
+
+
+    /* --------------------------------------------------------
+       ARTICLE GRID — three-column
+       -------------------------------------------------------- */
+
+    .blog-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+
+    /* --------------------------------------------------------
+       TOPICS GRID — six-column, cards flip to vertical
+       -------------------------------------------------------- */
+
+    .blog-topics__grid {
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    .blog-topic-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.2rem;
+        padding: 2.4rem;
+    }
+
+
+    /* --------------------------------------------------------
+       CTA STRIP — actions horizontal
+       -------------------------------------------------------- */
+
+    .blog-cta-strip__actions {
+        flex-direction: row;
+    }
+}

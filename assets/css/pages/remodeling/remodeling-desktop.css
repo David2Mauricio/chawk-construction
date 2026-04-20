@@ -1,0 +1,127 @@
+/**
+ * FULL REMODELING PAGE — DESKTOP STYLES
+ *
+ * @file        remodeling-desktop.css
+ * @description Responsive overrides for 1024px and above.
+ *              Also includes accessibility focus styles and reduced-motion.
+ * @version     1.0.0
+ * @author      Herazo Lopez David Mauricio
+ * @license     Proprietary — C Hawk Construction and Renovation LLC
+ */
+
+
+/* =============================================================================
+   DESKTOP  (1024px+)
+   ============================================================================= */
+
+@media (min-width: 1024px) {
+
+  /* Hero */
+  .svc-hero__container {
+    padding: 0 var(--container-padding-desktop);
+    padding-bottom: var(--space-6xl);
+  }
+
+  .svc-hero__title {
+    font-size: 6.4rem;
+  }
+
+  .svc-hero__content {
+    max-width: 80rem;
+  }
+
+  /* All section containers */
+  .svc-included__container,
+  .svc-process__container,
+  .svc-stats__container,
+  .svc-testimonials__container,
+  .svc-areas__container,
+  .svc-cta__container {
+    padding: 0 var(--container-padding-desktop);
+  }
+
+  /* Before/After grid — full height rows */
+  .svc-ba__grid {
+    grid-auto-rows: 60rem;
+  }
+
+  /* Included — 4 columns */
+  .svc-included__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* Process — 4 steps in a row */
+  .svc-process__steps {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* Testimonials — 3 columns */
+  .svc-testimonials__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Areas — 4 columns */
+  .svc-areas__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* CTA title larger */
+  .svc-cta__title {
+    font-size: var(--font-size-3xl);
+  }
+
+}
+
+
+/* =============================================================================
+   LARGE DESKTOP  (1220px+)
+   ============================================================================= */
+
+@media (min-width: 1220px) {
+
+  .svc-hero__title {
+    font-size: 7.2rem;
+  }
+
+}
+
+
+/* =============================================================================
+   ACCESSIBILITY
+   ============================================================================= */
+
+.svc-hero__cta:focus,
+.svc-included__cta-link:focus,
+.svc-cta__btn:focus {
+  outline: 0.3rem solid var(--color-primary);
+  outline-offset: 0.2rem;
+}
+
+.svc-hero__cta:focus:not(:focus-visible),
+.svc-included__cta-link:focus:not(:focus-visible),
+.svc-cta__btn:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* nav__mega-link--current — active service in the megamenu */
+.nav__mega-link--current {
+  background: var(--color-accent-bg);
+  border-radius: var(--border-radius-md);
+}
+
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+}

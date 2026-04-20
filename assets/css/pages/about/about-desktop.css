@@ -1,0 +1,144 @@
+/**
+ * ABOUT PAGE — DESKTOP STYLES
+ *
+ * @file        about-desktop.css
+ * @description Responsive overrides for 1024px and above.
+ *              Also includes accessibility focus styles and reduced-motion
+ *              (these are global and small — grouped here to minimize requests).
+ * @version     1.0.0
+ * @author      Herazo Lopez David Mauricio
+ * @license     Proprietary — C Hawk Construction and Renovation LLC
+ */
+
+
+/* =============================================================================
+   DESKTOP  (1024px+)
+   ============================================================================= */
+
+@media (min-width: 1024px) {
+
+  /* Hero */
+  .about-hero {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    padding: calc(var(--nav-height-desktop) + var(--space-4xl)) 0 var(--space-6xl);
+  }
+
+  .about-hero__container {
+    padding: 0 var(--container-padding-desktop);
+  }
+
+  .about-hero__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6xl);
+    align-items: center;
+  }
+
+  .about-hero__title {
+    font-size: 6rem;
+  }
+
+  /* All section containers */
+  .about-story__container,
+  .about-founders__container,
+  .about-values__container,
+  .about-capabilities__container,
+  .about-numbers__container,
+  .about-license__container,
+  .about-areas__container,
+  .about-cta__container {
+    padding: 0 var(--container-padding-desktop);
+  }
+
+  /* Story */
+  .about-story__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6xl);
+    align-items: center;
+  }
+
+  /* Values */
+  .about-values__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* Capabilities */
+  .about-capabilities__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Numbers */
+  .about-numbers__grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .about-numbers__stat-number {
+    font-size: var(--font-size-3xl);
+  }
+
+  /* Areas */
+  .about-areas__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* CTA */
+  .about-cta__title {
+    font-size: var(--font-size-3xl);
+  }
+
+}
+
+
+/* =============================================================================
+   LARGE DESKTOP  (1220px+)
+   ============================================================================= */
+
+@media (min-width: 1220px) {
+
+  .about-hero__title {
+    font-size: 6.4rem;
+  }
+
+  .about-story__grid {
+    gap: 10rem;
+  }
+
+}
+
+
+/* =============================================================================
+   ACCESSIBILITY
+   ============================================================================= */
+
+.about-hero__cta:focus,
+.about-capabilities__cta-link:focus,
+.about-cta__btn:focus,
+.about-founder__linkedin:focus {
+  outline: 0.3rem solid var(--color-primary);
+  outline-offset: 0.2rem;
+}
+
+.about-hero__cta:focus:not(:focus-visible),
+.about-capabilities__cta-link:focus:not(:focus-visible),
+.about-cta__btn:focus:not(:focus-visible),
+.about-founder__linkedin:focus:not(:focus-visible) {
+  outline: none;
+}
+
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+}

@@ -141,11 +141,24 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         contact: resolve(__dirname, 'contact.html'),
-        // Uncomment and add as you create new pages:
-        // services: resolve(__dirname, 'services.html'),
-        // portfolio: resolve(__dirname, 'portfolio.html'),
-        // about: resolve(__dirname, 'about.html'),
-        // blog: resolve(__dirname, 'blog.html'),
+        blog:            resolve(__dirname, 'blog-index.html'),
+        blogKitchen:     resolve(__dirname, 'blog-kitchen-cost.html'),
+        blogHicpa:       resolve(__dirname, 'blog-hicpa-v2.html'),
+        blogMold:        resolve(__dirname, 'blog-mold-health.html'),
+        blogPsychology:  resolve(__dirname, 'blog-psychology-home.html'),
+        blogFlooring:    resolve(__dirname, 'blog-flooring-pa.html'),
+        blogPlanning:    resolve(__dirname, 'blog-planning-guide.html'),
+        about:    resolve(__dirname, 'about.html'),
+        remodeling: resolve(__dirname, 'remodeling.html'),
+        carpentry: resolve(__dirname, 'carpentry.html'),
+        drywall: resolve(__dirname, 'drywall.html'),
+        flooring: resolve(__dirname, 'flooring.html'),
+        painting: resolve(__dirname, 'painting.html'),
+        weatherization: resolve(__dirname, 'weatherization.html'),
+        portfolio: resolve(__dirname, 'portfolio.html'),
+
+
+
       },
       
       output: {

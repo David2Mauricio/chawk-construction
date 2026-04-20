@@ -1,0 +1,931 @@
+/**
+ * FULL REMODELING PAGE — BELOW FOLD STYLES
+ *
+ * @file        remodeling-below-fold.css
+ * @description All non-hero sections: gallery/before-after, included services,
+ *              process, stats, testimonials, areas, cta.
+ *              Loaded non-blocking — does not affect LCP or FCP.
+ * @version     1.0.0
+ * @author      Herazo Lopez David Mauricio
+ * @license     Proprietary — C Hawk Construction and Renovation LLC
+ */
+
+
+/* =============================================================================
+   SHARED SECTION UTILITIES
+   ============================================================================= */
+
+.svc-included__badge,
+.svc-process__badge,
+.svc-testimonials__badge,
+.svc-areas__badge,
+.svc-cta__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-lg);
+  background: var(--color-accent-bg);
+  border-radius: var(--border-radius-full);
+  margin-bottom: var(--space-lg);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-trust);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+}
+
+.svc-gallery__badge svg,
+.svc-included__badge svg,
+.svc-process__badge svg,
+.svc-testimonials__badge svg,
+.svc-areas__badge svg,
+.svc-cta__badge svg {
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.svc-gallery__title-accent,
+.svc-included__title-accent,
+.svc-process__title-accent,
+.svc-testimonials__title-accent,
+.svc-cta__title-accent {
+  display: block;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Section entrance animation — pure CSS */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.svc-gallery,
+.svc-included,
+.svc-process,
+.svc-stats,
+.svc-testimonials,
+.svc-areas,
+.svc-cta {
+  animation: fade-up 0.6s var(--ease-smooth) both;
+}
+
+
+/* =============================================================================
+   BEFORE / AFTER GALLERY
+   ============================================================================= */
+
+.svc-gallery {
+  padding: var(--space-6xl) 0;
+  background: var(--color-white);
+}
+
+.svc-gallery__container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding-mobile);
+}
+
+.svc-gallery__header {
+  text-align: center;
+  margin-bottom: var(--space-4xl);
+}
+
+.svc-gallery__title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-black);
+  color: var(--color-trust);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.svc-gallery__subtitle {
+  font-size: var(--font-size-base);
+  color: var(--color-slate);
+  margin-top: var(--space-md);
+}
+
+.svc-ba__grid {
+  display: grid;
+  gap: var(--space-2xl);
+}
+
+/* -----------------------------------------------------------------------------
+   Before/After slider — CSS-only using input[type=range]
+   The range input controls a CSS custom property via its value, which
+   drives the clip-path of the :after layer. Works without JavaScript.
+   ----------------------------------------------------------------------------- */
+
+.svc-ba {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.svc-ba__wrapper {
+  position: relative;
+  border-radius: var(--border-radius-2xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  cursor: ew-resize;
+  user-select: none;
+}
+
+/* Before image — fills the entire wrapper */
+.svc-ba__before,
+.svc-ba__after {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.svc-ba__before {
+  z-index: 1;
+}
+
+/* After image clips from right based on slider value */
+.svc-ba__after {
+  z-index: 2;
+  clip-path: inset(0 50% 0 0);
+}
+
+.svc-ba__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Labels */
+.svc-ba__label {
+  position: absolute;
+  top: var(--space-lg);
+  padding: var(--space-xs) var(--space-md);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+  border-radius: var(--border-radius-lg);
+  z-index: 4;
+}
+
+.svc-ba__label--before {
+  left: var(--space-lg);
+  background: rgba(0, 0, 0, 0.55);
+  color: var(--color-white);
+}
+
+.svc-ba__label--after {
+  right: var(--space-lg);
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* Range input — invisible but fully interactive on top */
+.svc-ba__slider {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: ew-resize;
+  z-index: 5;
+  margin: 0;
+  padding: 0;
+  -webkit-appearance: none;
+}
+
+/* Visual handle line + arrows */
+.svc-ba__handle {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0.4rem;
+  height: 100%;
+  background: var(--color-white);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  pointer-events: none;
+}
+
+.svc-ba__handle::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 4.4rem;
+  height: 4.4rem;
+  background: var(--color-white);
+  border-radius: var(--border-radius-full);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.svc-ba__handle svg {
+  position: relative;
+  z-index: 1;
+  color: var(--color-primary);
+}
+
+.svc-ba__caption {
+  font-size: var(--font-size-sm);
+  color: var(--color-slate);
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+  margin: 0;
+}
+
+
+/* =============================================================================
+   WHAT'S INCLUDED
+   ============================================================================= */
+
+.svc-included {
+  padding: var(--space-6xl) 0;
+  background: var(--color-gray-100);
+}
+
+.svc-included__container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding-mobile);
+}
+
+.svc-included__header {
+  text-align: center;
+  margin-bottom: var(--space-4xl);
+}
+
+.svc-included__title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-black);
+  color: var(--color-trust);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.svc-included__subtitle {
+  font-size: var(--font-size-base);
+  color: var(--color-slate);
+  line-height: var(--line-height-relaxed);
+  max-width: 54rem;
+  margin: var(--space-md) auto 0;
+}
+
+.svc-included__grid {
+  display: grid;
+  gap: var(--space-2xl);
+  margin-bottom: var(--space-3xl);
+}
+
+/* -----------------------------------------------------------------------------
+   Included service card
+   ----------------------------------------------------------------------------- */
+
+.svc-included__card {
+  background: var(--color-white);
+  border-radius: var(--border-radius-2xl);
+  padding: var(--space-2xl);
+  box-shadow: var(--shadow-card);
+  border: 0.2rem solid var(--color-mist);
+  transition: transform var(--transition-base) var(--ease-smooth),
+    box-shadow var(--transition-base) var(--ease-smooth);
+}
+
+.svc-included__card:hover {
+  transform: translateY(-0.4rem);
+  box-shadow: 0 0 0 0.2rem var(--color-primary), var(--shadow-card-hover);
+}
+
+.svc-included__card-icon {
+  width: 6rem;
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-accent-bg), var(--color-accent-light));
+  border-radius: var(--border-radius-xl);
+  color: var(--color-primary);
+  margin-bottom: var(--space-lg);
+  transition: background var(--transition-base) var(--ease-smooth);
+}
+
+.svc-included__card:hover .svc-included__card-icon {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: var(--color-white);
+}
+
+.svc-included__card-title {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-trust);
+  margin-bottom: var(--space-sm);
+}
+
+.svc-included__card-desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-slate);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--space-lg);
+}
+
+.svc-included__card-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.svc-included__card-list li {
+  font-size: var(--font-size-sm);
+  color: var(--color-slate);
+  padding-left: var(--space-lg);
+  position: relative;
+  line-height: var(--line-height-normal);
+}
+
+.svc-included__card-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 0.6rem;
+  height: 0.6rem;
+  background: var(--color-primary);
+  border-radius: var(--border-radius-full);
+}
+
+/* Mid-section phone CTA */
+.svc-included__cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-2xl);
+  background: var(--color-accent-bg);
+  border-radius: var(--border-radius-xl);
+  border: 0.2rem solid var(--color-primary-light);
+  text-align: center;
+}
+
+.svc-included__cta p {
+  font-size: var(--font-size-base);
+  color: var(--color-trust);
+  font-weight: var(--font-weight-semibold);
+  margin: 0;
+}
+
+.svc-included__cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-2xl);
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-btn);
+  transition: transform var(--transition-base) var(--ease-smooth),
+    box-shadow var(--transition-base) var(--ease-smooth);
+}
+
+.svc-included__cta-link:hover {
+  transform: translateY(-0.2rem);
+  box-shadow: var(--shadow-btn-hover);
+}
+
+
+/* =============================================================================
+   PROCESS
+   ============================================================================= */
+
+.svc-process {
+  padding: var(--space-6xl) 0;
+  background: var(--color-white);
+}
+
+.svc-process__container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding-mobile);
+}
+
+.svc-process__header {
+  text-align: center;
+  margin-bottom: var(--space-4xl);
+}
+
+.svc-process__title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-black);
+  color: var(--color-trust);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.svc-process__steps {
+  display: grid;
+  gap: var(--space-2xl);
+}
+
+/* -----------------------------------------------------------------------------
+   Process step
+   ----------------------------------------------------------------------------- */
+
+.svc-process__step {
+  display: flex;
+  gap: var(--space-2xl);
+  align-items: flex-start;
+  padding: var(--space-2xl);
+  background: var(--color-gray-100);
+  border-radius: var(--border-radius-xl);
+  border: 0.2rem solid var(--color-mist);
+  transition: transform var(--transition-base) var(--ease-smooth),
+    box-shadow var(--transition-base) var(--ease-smooth);
+}
+
+.svc-process__step:hover {
+  transform: translateY(-0.3rem);
+  box-shadow: 0 0 0 0.2rem var(--color-primary), var(--shadow-primary);
+}
+
+.svc-process__step-number {
+  font-size: 4.8rem;
+  font-weight: var(--font-weight-black);
+  color: var(--color-mist);
+  line-height: 1;
+  flex-shrink: 0;
+  letter-spacing: var(--letter-spacing-tight);
+  min-width: 5rem;
+}
+
+.svc-process__step-content {
+  flex: 1;
+}
+
+.svc-process__step-icon {
+  width: 5.2rem;
+  height: 5.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  border-radius: var(--border-radius-lg);
+  color: var(--color-white);
+  margin-bottom: var(--space-lg);
+  box-shadow: var(--shadow-primary);
+}
+
+.svc-process__step-title {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-trust);
+  margin-bottom: var(--space-sm);
+}
+
+.svc-process__step-desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-slate);
+  line-height: var(--line-height-relaxed);
+  margin: 0;
+}
+
+
+/* =============================================================================
+   STATS BAND
+   ============================================================================= */
+
+.svc-stats {
+  padding: var(--space-4xl) 0;
+  background: linear-gradient(135deg, var(--color-trust) 0%, var(--color-primary-dark) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Static radial decoration */
+.svc-stats::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.svc-stats__container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding-mobile);
+  position: relative;
+  z-index: 1;
+}
+
+.svc-stats__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-2xl);
+}
+
+.svc-stats__item {
+  text-align: center;
+  padding: var(--space-xl) var(--space-lg);
+  background: rgba(255, 255, 255, 0.06);
+  border: 0.1rem solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--border-radius-xl);
+  transition: background var(--transition-base) var(--ease-smooth),
+    box-shadow var(--transition-base) var(--ease-smooth);
+}
+
+.svc-stats__item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 0 0.1rem rgba(255, 255, 255, 0.25);
+}
+
+.svc-stats__number {
+  display: block;
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-black);
+  color: var(--color-white);
+  line-height: 1;
+  margin-bottom: var(--space-sm);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.svc-stats__label {
+  display: block;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: rgba(255, 255, 255, 0.65);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wider);
+}
+
+
+/* =============================================================================
+   TESTIMONIALS
+   ============================================================================= */
+
+.svc-testimonials {
+  padding: var(--space-6xl) 0;
+  background: var(--color-gray-100);
+}
+
+.svc-testimonials__container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding-mobile);
+}
+
+.svc-testimonials__header {
+  text-align: center;
+  margin-bottom: var(--space-4xl);
+}
+
+.svc-testimonials__title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-black);
+  color: var(--color-trust);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.svc-testimonials__grid {
+  display: grid;
+  gap: var(--space-2xl);
+}
+
+/* -----------------------------------------------------------------------------
+   Testimonial card
+   ----------------------------------------------------------------------------- */
+
+.svc-testimonial {
+  background: var(--color-white);
+  border-radius: var(--border-radius-2xl);
+  padding: var(--space-2xl);
+  box-shadow: var(--shadow-card);
+  border: 0.2rem solid var(--color-mist);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  transition: transform var(--transition-smooth) var(--ease-smooth),
+    box-shadow var(--transition-smooth) var(--ease-smooth);
+}
+
+.svc-testimonial:hover {
+  transform: translateY(-0.4rem);
+  box-shadow: 0 0 0 0.2rem var(--color-primary), var(--shadow-card-hover);
+}
+
+.svc-testimonial__rating {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.svc-testimonial__rating svg {
+  color: #ffb800;
+}
+
+.svc-testimonial__text {
+  flex: 1;
+  margin: 0;
+}
+
+.svc-testimonial__text p {
+  font-size: var(--font-size-base);
+  color: var(--color-slate);
+  line-height: var(--line-height-relaxed);
+  font-style: italic;
+  margin: 0;
+}
+
+.svc-testimonial__author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding-top: var(--space-lg);
+  border-top: 0.1rem solid var(--color-mist);
+}
+
+.svc-testimonial__avatar {
+  width: 4.8rem;
+  height: 4.8rem;
+  border-radius: var(--border-radius-full);
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 0.2rem solid var(--color-mist);
+}
+
+.svc-testimonial__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.svc-testimonial__name {
+  display: block;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-trust);
+  font-style: normal;
+}
+
+.svc-testimonial__location {
+  display: block;
+  font-size: var(--font-size-xs);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+
+/* =============================================================================
+   SERVICE AREAS
+   ============================================================================= */
+
+.svc-areas {
+  padding: var(--space-6xl) 0;
+  background: var(--color-white);
+}
+
+.svc-areas__container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding-mobile);
+}
+
+.svc-areas__header {
+  text-align: center;
+  margin-bottom: var(--space-3xl);
+}
+
+.svc-areas__title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-black);
+  color: var(--color-trust);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.svc-areas__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+}
+
+.svc-areas__item {
+  padding: var(--space-lg);
+  background: var(--color-gray-100);
+  border-radius: var(--border-radius-xl);
+  border: 0.2rem solid var(--color-mist);
+  text-align: center;
+  transition: transform var(--transition-base) var(--ease-smooth),
+    box-shadow var(--transition-base) var(--ease-smooth);
+}
+
+.svc-areas__item:hover {
+  transform: translateY(-0.3rem);
+  box-shadow: 0 0 0 0.2rem var(--color-primary), var(--shadow-primary);
+}
+
+.svc-areas__item--primary {
+  background: var(--color-accent-bg);
+  border-color: var(--color-primary-light);
+}
+
+.svc-areas__name {
+  display: block;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-trust);
+  margin-bottom: var(--space-xs);
+}
+
+.svc-areas__count {
+  display: block;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+
+/* =============================================================================
+   FINAL CTA
+   ============================================================================= */
+
+.svc-cta {
+  padding: var(--space-6xl) 0;
+  background: linear-gradient(135deg, var(--color-trust) 0%, var(--color-primary-dark) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Static decorative circle — no animation */
+.svc-cta::before {
+  content: "";
+  position: absolute;
+  width: 60rem;
+  height: 60rem;
+  top: -20rem;
+  right: -20rem;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: var(--border-radius-full);
+  pointer-events: none;
+}
+
+.svc-cta__container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding-mobile);
+  position: relative;
+  z-index: 1;
+}
+
+.svc-cta__content {
+  text-align: center;
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+.svc-cta__badge {
+  background: rgba(255, 255, 255, 0.12);
+  border: 0.1rem solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.svc-cta__badge svg {
+  color: var(--color-primary-light);
+}
+
+.svc-cta__title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-black);
+  color: var(--color-white);
+  line-height: var(--line-height-tight);
+  margin-bottom: var(--space-lg);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.svc-cta__title-accent {
+  background: linear-gradient(135deg, var(--color-primary-light), #a8d4ee);
+}
+
+.svc-cta__text {
+  font-size: var(--font-size-lg);
+  color: rgba(255, 255, 255, 0.8);
+  line-height: var(--line-height-relaxed);
+  margin: 0 auto var(--space-3xl);
+}
+
+.svc-cta__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  align-items: center;
+  margin-bottom: var(--space-2xl);
+}
+
+/* -----------------------------------------------------------------------------
+   CTA buttons
+   ----------------------------------------------------------------------------- */
+
+.svc-cta__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-lg) var(--space-3xl);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  border-radius: var(--border-radius-lg);
+  width: 100%;
+  max-width: 34rem;
+  transition: transform var(--transition-base) var(--ease-smooth),
+    box-shadow var(--transition-base) var(--ease-smooth);
+}
+
+.svc-cta__btn svg {
+  flex-shrink: 0;
+  transition: transform var(--transition-base) var(--ease-smooth);
+}
+
+.svc-cta__btn:hover svg {
+  transform: scale(1.1);
+}
+
+.svc-cta__btn--primary {
+  background: var(--color-white);
+  color: var(--color-trust);
+  box-shadow: 0 1.2rem 3.5rem rgba(0, 0, 0, 0.2);
+}
+
+.svc-cta__btn--primary:hover {
+  transform: translateY(-0.2rem);
+  box-shadow: 0 1.8rem 4.5rem rgba(0, 0, 0, 0.3);
+}
+
+.svc-cta__btn--secondary {
+  background: transparent;
+  color: var(--color-white);
+  border: 0.2rem solid rgba(255, 255, 255, 0.5);
+}
+
+.svc-cta__btn--secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-white);
+  transform: translateY(-0.2rem);
+}
+
+.svc-cta__trust {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-lg);
+}
+
+.svc-cta__trust span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.svc-cta__trust svg {
+  color: var(--color-primary-light);
+  flex-shrink: 0;
+}
+
+
+/* =============================================================================
+   BEFORE/AFTER SLIDER INTERACTION — CSS custom property driven
+   The input[type=range] value updates --slider-pos via JS-free CSS trick
+   using the @property rule for browsers that support it, with graceful fallback
+   ============================================================================= */
+
+.svc-ba__wrapper:has(.svc-ba__slider:focus-within) .svc-ba__handle {
+  outline: 0.3rem solid var(--color-primary);
+  outline-offset: 0.2rem;
+}

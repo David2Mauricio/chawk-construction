@@ -1,0 +1,99 @@
+/**
+ * ABOUT PAGE — TABLET STYLES
+ *
+ * @file        about-tablet.css
+ * @description Responsive overrides for 768px and above.
+ *              Loaded only when viewport matches — zero cost on mobile.
+ * @version     1.0.0
+ * @author      Herazo Lopez David Mauricio
+ * @license     Proprietary — C Hawk Construction and Renovation LLC
+ */
+
+
+/* =============================================================================
+   TABLET  (768px+)
+   ============================================================================= */
+
+@media (min-width: 768px) {
+
+  /* Hero */
+  .about-hero {
+    padding: calc(var(--nav-height-desktop) + var(--space-4xl)) 0 var(--space-6xl);
+  }
+
+  .about-hero__container {
+    padding: 0 var(--container-padding-tablet);
+  }
+
+  .about-hero__title {
+    font-size: 5.6rem;
+  }
+
+  .about-hero__actions {
+    flex-direction: row;
+  }
+
+  .about-hero__cta {
+    width: auto;
+  }
+
+  .about-hero__stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* All section containers */
+  .about-story__container,
+  .about-founders__container,
+  .about-values__container,
+  .about-capabilities__container,
+  .about-numbers__container,
+  .about-license__container,
+  .about-areas__container,
+  .about-cta__container {
+    padding: 0 var(--container-padding-tablet);
+  }
+
+  /* Story */
+  .about-story__title {
+    font-size: var(--font-size-3xl);
+  }
+
+  /* Founders */
+  .about-founders__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-2xl);
+  }
+
+  /* Values */
+  .about-values__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Numbers */
+  .about-numbers__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* License */
+  .about-license__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-5xl);
+  }
+
+  /* Areas */
+  .about-areas__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* CTA */
+  .about-cta__actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .about-cta__btn {
+    width: auto;
+    max-width: none;
+  }
+
+}
